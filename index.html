@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>90-Day New Testament Bible Reading Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+        }
+        .month-section {
+            margin-bottom: 3rem; /* Space between months */
+        }
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2.5rem; /* Increased padding */
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            width: 450px; /* Slightly wider modal */
+            position: relative;
+            text-align: center;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4a5568; /* Gray color */
+        }
+        .daily-reading-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start; /* Align text to the left */
+            position: relative; /* For absolute positioning of toggle if desired */
+        }
+        .status-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.8rem; /* Larger emoji */
+            line-height: 1; /* Adjust line height for emoji */
+            padding: 0.25rem; /* Small padding around emoji */
+            margin-top: 0.5rem; /* Space from reading text */
+            align-self: flex-end; /* Align toggle to the right within its container */
+        }
+        /* Style for completed items */
+        .daily-reading-item.completed {
+            opacity: 0.6; /* Slightly fade out completed items */
+            background-color: #e0f2f7; /* Lighter background for completed blue section */
+        }
+        .month-section.border-green-500 .daily-reading-item.completed {
+            background-color: #e6f9ed; /* Lighter background for completed green section */
+        }
+        .month-section.border-purple-500 .daily-reading-item.completed {
+            background-color: #f3e8ff; /* Lighter background for completed purple section */
+        }
+
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 min-h-screen flex flex-col items-center justify-center">
+
+    <!-- August 2025 Readings -->
+    <div class="month-section bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl max-w-4xl w-full text-center border-4 border-blue-500">
+        <h1 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">August 2025 Readings</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Prayers, faith and trust in Jesus christ ✝️ ❤️‍🔥 🛐</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Sunday 3rd August" data-reading="Matthew 1-3" data-id="2025-08-03_Matthew_1-3">
+                <p class="font-semibold text-blue-700">Sunday 3rd August</p>
+                <p class="text-gray-800">Matthew 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button> <!-- Crucifixion Cross emoji -->
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Monday 4th August" data-reading="Matthew 4-6" data-id="2025-08-04_Matthew_4-6">
+                <p class="font-semibold text-blue-700">Monday 4th August</p>
+                <p class="text-gray-800">Matthew 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Tuesday 5th August" data-reading="Matthew 7-9" data-id="2025-08-05_Matthew_7-9">
+                <p class="font-semibold text-blue-700">Tuesday 5th August</p>
+                <p class="text-gray-800">Matthew 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Wednesday 6th August" data-reading="Matthew 10-12" data-id="2025-08-06_Matthew_10-12">
+                <p class="font-semibold text-blue-700">Wednesday 6th August</p>
+                <p class="text-gray-800">Matthew 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Thursday 7th August" data-reading="Matthew 13-15" data-id="2025-08-07_Matthew_13-15">
+                <p class="font-semibold text-blue-700">Thursday 7th August</p>
+                <p class="text-gray-800">Matthew 13-15</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Friday 8th August" data-reading="Matthew 16-18" data-id="2025-08-08_Matthew_16-18">
+                <p class="font-semibold text-blue-700">Friday 8th August</p>
+                <p class="text-gray-800">Matthew 16-18</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Saturday 9th August" data-reading="Matthew 19-21" data-id="2025-08-09_Matthew_19-21">
+                <p class="font-semibold text-blue-700">Saturday 9th August</p>
+                <p class="text-gray-800">Matthew 19-21</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Sunday 10th August" data-reading="Matthew 22-24" data-id="2025-08-10_Matthew_22-24">
+                <p class="font-semibold text-blue-700">Sunday 10th August</p>
+                <p class="text-gray-800">Matthew 22-24</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Monday 11th August" data-reading="Matthew 25-28" data-id="2025-08-11_Matthew_25-28">
+                <p class="font-semibold text-blue-700">Monday 11th August</p>
+                <p class="text-gray-800">Matthew 25-28</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Tuesday 12th August" data-reading="Mark 1-3" data-id="2025-08-12_Mark_1-3">
+                <p class="font-semibold text-blue-700">Tuesday 12th August</p>
+                <p class="text-gray-800">Mark 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Wednesday 13th August" data-reading="Mark 4-6" data-id="2025-08-13_Mark_4-6">
+                <p class="font-semibold text-blue-700">Wednesday 13th August</p>
+                <p class="text-gray-800">Mark 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Thursday 14th August" data-reading="Mark 7-9" data-id="2025-08-14_Mark_7-9">
+                <p class="font-semibold text-blue-700">Thursday 14th August</p>
+                <p class="text-gray-800">Mark 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Friday 15th August" data-reading="Mark 10-12" data-id="2025-08-15_Mark_10-12">
+                <p class="font-semibold text-blue-700">Friday 15th August</p>
+                <p class="text-gray-800">Mark 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Saturday 16th August" data-reading="Mark 13-16" data-id="2025-08-16_Mark_13-16">
+                <p class="font-semibold text-blue-700">Saturday 16th August</p>
+                <p class="text-gray-800">Mark 13-16</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Sunday 17th August" data-reading="Luke 1-3" data-id="2025-08-17_Luke_1-3">
+                <p class="font-semibold text-blue-700">Sunday 17th August</p>
+                <p class="text-gray-800">Luke 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Monday 18th August" data-reading="Luke 4-6" data-id="2025-08-18_Luke_4-6">
+                <p class="font-semibold text-blue-700">Monday 18th August</p>
+                <p class="text-gray-800">Luke 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Tuesday 19th August" data-reading="Luke 7-9" data-id="2025-08-19_Luke_7-9">
+                <p class="font-semibold text-blue-700">Tuesday 19th August</p>
+                <p class="text-gray-800">Luke 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Wednesday 20th August" data-reading="Luke 10-12" data-id="2025-08-20_Luke_10-12">
+                <p class="font-semibold text-blue-700">Wednesday 20th August</p>
+                <p class="text-gray-800">Luke 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Thursday 21st August" data-reading="Luke 13-15" data-id="2025-08-21_Luke_13-15">
+                <p class="font-semibold text-blue-700">Thursday 21st August</p>
+                <p class="text-gray-800">Luke 13-15</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Friday 22nd August" data-reading="Luke 16-18" data-id="2025-08-22_Luke_16-18">
+                <p class="font-semibold text-blue-700">Friday 22nd August</p>
+                <p class="text-gray-800">Luke 16-18</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Saturday 23rd August" data-reading="Luke 19-21" data-id="2025-08-23_Luke_19-21">
+                <p class="font-semibold text-blue-700">Saturday 23rd August</p>
+                <p class="text-gray-800">Luke 19-21</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Sunday 24th August" data-reading="Luke 22-24" data-id="2025-08-24_Luke_22-24">
+                <p class="font-semibold text-blue-700">Sunday 24th August</p>
+                <p class="text-gray-800">Luke 22-24</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Monday 25th August" data-reading="John 1-3" data-id="2025-08-25_John_1-3">
+                <p class="font-semibold text-blue-700">Monday 25th August</p>
+                <p class="text-gray-800">John 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Tuesday 26th August" data-reading="John 4-6" data-id="2025-08-26_John_4-6">
+                <p class="font-semibold text-blue-700">Tuesday 26th August</p>
+                <p class="text-gray-800">John 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Wednesday 27th August" data-reading="John 7-9" data-id="2025-08-27_John_7-9">
+                <p class="font-semibold text-blue-700">Wednesday 27th August</p>
+                <p class="text-gray-800">John 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Thursday 28th August" data-reading="John 10-12" data-id="2025-08-28_John_10-12">
+                <p class="font-semibold text-blue-700">Thursday 28th August</p>
+                <p class="text-gray-800">John 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Friday 29th August" data-reading="John 13-15" data-id="2025-08-29_John_13-15">
+                <p class="font-semibold text-blue-700">Friday 29th August</p>
+                <p class="text-gray-800">John 13-15</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Saturday 30th August" data-reading="John 16-18" data-id="2025-08-30_John_16-18">
+                <p class="font-semibold text-blue-700">Saturday 30th August</p>
+                <p class="text-gray-800">John 16-18</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-blue-50 rounded-lg shadow-sm cursor-pointer hover:bg-blue-100 transition duration-200 daily-reading-item" data-date="Sunday 31st August" data-reading="John 19-21" data-id="2025-08-31_John_19-21">
+                <p class="font-semibold text-blue-700">Sunday 31st August</p>
+                <p class="text-gray-800">John 19-21</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- September 2025 Readings -->
+    <div class="month-section bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl max-w-4xl w-full text-center border-4 border-green-500">
+        <h1 class="text-3xl sm:text-4xl font-bold text-green-800 mb-6">September 2025 Readings</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Prayers, faith and trust in Jesus christ ✝️ ❤️‍🔥 🛐 </h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Monday 1st September" data-reading="Acts 1-3" data-id="2025-09-01_Acts_1-3">
+                <p class="font-semibold text-green-700">Monday 1st September</p>
+                <p class="text-gray-800">Acts 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Tuesday 2nd September" data-reading="Acts 4-6" data-id="2025-09-02_Acts_4-6">
+                <p class="font-semibold text-green-700">Tuesday 2nd September</p>
+                <p class="text-gray-800">Acts 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Wednesday 3rd September" data-reading="Acts 7-9" data-id="2025-09-03_Acts_7-9">
+                <p class="font-semibold text-green-700">Wednesday 3rd September</p>
+                <p class="text-gray-800">Acts 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Thursday 4th September" data-reading="Acts 10-12" data-id="2025-09-04_Acts_10-12">
+                <p class="font-semibold text-green-700">Thursday 4th September</p>
+                <p class="text-gray-800">Acts 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Friday 5th September" data-reading="Acts 13-15" data-id="2025-09-05_Acts_13-15">
+                <p class="font-semibold text-green-700">Friday 5th September</p>
+                <p class="text-gray-800">Acts 13-15</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Saturday 6th September" data-reading="Acts 16-18" data-id="2025-09-06_Acts_16-18">
+                <p class="font-semibold text-green-700">Saturday 6th September</p>
+                <p class="text-gray-800">Acts 16-18</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Sunday 7th September" data-reading="Acts 19-21" data-id="2025-09-07_Acts_19-21">
+                <p class="font-semibold text-green-700">Sunday 7th September</p>
+                <p class="text-gray-800">Acts 19-21</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Monday 8th September" data-reading="Acts 22-24" data-id="2025-09-08_Acts_22-24">
+                <p class="font-semibold text-green-700">Monday 8th September</p>
+                <p class="text-gray-800">Acts 22-24</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Tuesday 9th September" data-reading="Acts 25-28" data-id="2025-09-09_Acts_25-28">
+                <p class="font-semibold text-green-700">Tuesday 9th September</p>
+                <p class="text-gray-800">Acts 25-28</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Wednesday 10th September" data-reading="Romans 1-3" data-id="2025-09-10_Romans_1-3">
+                <p class="font-semibold text-green-700">Wednesday 10th September</p>
+                <p class="text-gray-800">Romans 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Thursday 11th September" data-reading="Romans 4-6" data-id="2025-09-11_Romans_4-6">
+                <p class="font-semibold text-green-700">Thursday 11th September</p>
+                <p class="text-gray-800">Romans 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Friday 12th September" data-reading="Romans 7-9" data-id="2025-09-12_Romans_7-9">
+                <p class="font-semibold text-green-700">Friday 12th September</p>
+                <p class="text-gray-800">Romans 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Saturday 13th September" data-reading="Romans 10-12" data-id="2025-09-13_Romans_10-12">
+                <p class="font-semibold text-green-700">Saturday 13th September</p>
+                <p class="text-gray-800">Romans 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Sunday 14th September" data-reading="Romans 13-16" data-id="2025-09-14_Romans_13-16">
+                <p class="font-semibold text-green-700">Sunday 14th September</p>
+                <p class="text-gray-800">Romans 13-16</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Monday 15th September" data-reading="1 Corinthians 1-3" data-id="2025-09-15_1Corinthians_1-3">
+                <p class="font-semibold text-green-700">Monday 15th September</p>
+                <p class="text-gray-800">1 Corinthians 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Tuesday 16th September" data-reading="1 Corinthians 4-6" data-id="2025-09-16_1Corinthians_4-6">
+                <p class="font-semibold text-green-700">Tuesday 16th September</p>
+                <p class="text-gray-800">1 Corinthians 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Wednesday 17th September" data-reading="1 Corinthians 7-9" data-id="2025-09-17_1Corinthians_7-9">
+                <p class="font-semibold text-green-700">Wednesday 17th September</p>
+                <p class="text-gray-800">1 Corinthians 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Thursday 18th September" data-reading="1 Corinthians 10-12" data-id="2025-09-18_1Corinthians_10-12">
+                <p class="font-semibold text-green-700">Thursday 18th September</p>
+                <p class="text-gray-800">1 Corinthians 10-12</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Friday 19th September" data-reading="1 Corinthians 13-16" data-id="2025-09-19_1Corinthians_13-16">
+                <p class="font-semibold text-green-700">Friday 19th September</p>
+                <p class="text-gray-800">1 Corinthians 13-16</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Saturday 20th September" data-reading="2 Corinthians 1-3" data-id="2025-09-20_2Corinthians_1-3">
+                <p class="font-semibold text-green-700">Saturday 20th September</p>
+                <p class="text-gray-800">2 Corinthians 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Sunday 21st September" data-reading="2 Corinthians 4-6" data-id="2025-09-21_2Corinthians_4-6">
+                <p class="font-semibold text-green-700">Sunday 21st September</p>
+                <p class="text-gray-800">2 Corinthians 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Monday 22nd September" data-reading="2 Corinthians 7-9" data-id="2025-09-22_2Corinthians_7-9">
+                <p class="font-semibold text-green-700">Monday 22nd September</p>
+                <p class="text-gray-800">2 Corinthians 7-9</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Tuesday 23rd September" data-reading="2 Corinthians 10-13" data-id="2025-09-23_2Corinthians_10-13">
+                <p class="font-semibold text-green-700">Tuesday 23rd September</p>
+                <p class="text-gray-800">2 Corinthians 10-13</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Wednesday 24th September" data-reading="Galatians 1-3" data-id="2025-09-24_Galatians_1-3">
+                <p class="font-semibold text-green-700">Wednesday 24th September</p>
+                <p class="text-gray-800">Galatians 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Thursday 25th September" data-reading="Galatians 4-6" data-id="2025-09-25_Galatians_4-6">
+                <p class="font-semibold text-green-700">Thursday 25th September</p>
+                <p class="text-gray-800">Galatians 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Friday 26th September" data-reading="Ephesians 1-3" data-id="2025-09-26_Ephesians_1-3">
+                <p class="font-semibold text-green-700">Friday 26th September</p>
+                <p class="text-gray-800">Ephesians 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Saturday 27th September" data-reading="Ephesians 4-6" data-id="2025-09-27_Ephesians_4-6">
+                <p class="font-semibold text-green-700">Saturday 27th September</p>
+                <p class="text-gray-800">Ephesians 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Sunday 28th September" data-reading="Philippians 1-4" data-id="2025-09-28_Philippians_1-4">
+                <p class="font-semibold text-green-700">Sunday 28th September</p>
+                <p class="text-gray-800">Philippians 1-4</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Monday 29th September" data-reading="Colossians 1-4" data-id="2025-09-29_Colossians_1-4">
+                <p class="font-semibold text-green-700">Monday 29th September</p>
+                <p class="text-gray-800">Colossians 1-4</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-green-50 rounded-lg shadow-sm cursor-pointer hover:bg-green-100 transition duration-200 daily-reading-item" data-date="Tuesday 30th September" data-reading="1 Thessalonians 1-5" data-id="2025-09-30_1Thessalonians_1-5">
+                <p class="font-semibold text-green-700">Tuesday 30th September</p>
+                <p class="text-gray-800">1 Thessalonians 1-5</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- October 2025 Readings -->
+    <div class="month-section bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl max-w-4xl w-full text-center border-4 border-purple-500">
+        <h1 class="text-3xl sm:text-4xl font-bold text-purple-800 mb-6">October 2025 Readings</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold text-blue-800 mb-6">Prayers, faith and trust in Jesus christ ✝️ ❤️‍🔥 🛐</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Wednesday 1st October" data-reading="2 Thessalonians 1-3" data-id="2025-10-01_2Thessalonians_1-3">
+                <p class="font-semibold text-purple-700">Wednesday 1st October</p>
+                <p class="text-gray-800">2 Thessalonians 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Thursday 2nd October" data-reading="1 Timothy 1-3" data-id="2025-10-02_1Timothy_1-3">
+                <p class="font-semibold text-purple-700">Thursday 2nd October</p>
+                <p class="text-gray-800">1 Timothy 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Friday 3rd October" data-reading="1 Timothy 4-6" data-id="2025-10-03_1Timothy_4-6">
+                <p class="font-semibold text-purple-700">Friday 3rd October</p>
+                <p class="text-gray-800">1 Timothy 4-6</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Saturday 4th October" data-reading="2 Timothy 1-4" data-id="2025-10-04_2Timothy_1-4">
+                <p class="font-semibold text-purple-700">Saturday 4th October</p>
+                <p class="text-gray-800">2 Timothy 1-4</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Sunday 5th October" data-reading="Titus 1-3" data-id="2025-10-05_Titus_1-3">
+                <p class="font-semibold text-purple-700">Sunday 5th October</p>
+                <p class="text-gray-800">Titus 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Monday 6th October" data-reading="Philemon 1, Hebrews 1-2" data-id="2025-10-06_Philemon_1_Hebrews_1-2">
+                <p class="font-semibold text-purple-700">Monday 6th October</p>
+                <p class="text-gray-800">Philemon 1, Hebrews 1-2</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Tuesday 7th October" data-reading="Hebrews 3-5" data-id="2025-10-07_Hebrews_3-5">
+                <p class="font-semibold text-purple-700">Tuesday 7th October</p>
+                <p class="text-gray-800">Hebrews 3-5</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Wednesday 8th October" data-reading="Hebrews 6-8" data-id="2025-10-08_Hebrews_6-8">
+                <p class="font-semibold text-purple-700">Wednesday 8th October</p>
+                <p class="text-gray-800">Hebrews 6-8</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Thursday 9th October" data-reading="Hebrews 9-11" data-id="2025-10-09_Hebrews_9-11">
+                <p class="font-semibold text-purple-700">Thursday 9th October</p>
+                <p class="text-gray-800">Hebrews 9-11</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Friday 10th October" data-reading="Hebrews 12-13, James 1" data-id="2025-10-10_Hebrews_12-13_James_1">
+                <p class="font-semibold text-purple-700">Friday 10th October</p>
+                <p class="text-gray-800">Hebrews 12-13, James 1</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Saturday 11th October" data-reading="James 2-5" data-id="2025-10-11_James_2-5">
+                <p class="font-semibold text-purple-700">Saturday 11th October</p>
+                <p class="text-gray-800">James 2-5</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Sunday 12th October" data-reading="1 Peter 1-3" data-id="2025-10-12_1Peter_1-3">
+                <p class="font-semibold text-purple-700">Sunday 12th October</p>
+                <p class="text-gray-800">1 Peter 1-3</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Monday 13th October" data-reading="1 Peter 4-5, 2 Peter 1" data-id="2025-10-13_1Peter_4-5_2Peter_1">
+                <p class="font-semibold text-purple-700">Monday 13th October</p>
+                <p class="text-gray-800">1 Peter 4-5, 2 Peter 1</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Tuesday 14th October" data-reading="2 Peter 2-3, 1 John 1" data-id="2025-10-14_2Peter_2-3_1John_1">
+                <p class="font-semibold text-purple-700">Tuesday 14th October</p>
+                <p class="text-gray-800">2 Peter 2-3, 1 John 1</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Wednesday 15th October" data-reading="1 John 2-4" data-id="2025-10-15_1John_2-4">
+                <p class="font-semibold text-purple-700">Wednesday 15th October</p>
+                <p class="text-gray-800">1 John 2-4</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Thursday 16th October" data-reading="1 John 5, 2 John 1, 3 John 1" data-id="2025-10-16_1John_5_2John_1_3John_1">
+                <p class="font-semibold text-purple-700">Thursday 16th October</p>
+                <p class="text-gray-800">1 John 5, 2 John 1, 3 John 1</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Friday 17th October" data-reading="Jude 1, Revelation 1-2" data-id="2025-10-17_Jude_1_Revelation_1-2">
+                <p class="font-semibold text-purple-700">Friday 17th October</p>
+                <p class="text-gray-800">Jude 1, Revelation 1-2</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Saturday 18th October" data-reading="Revelation 3-5" data-id="2025-10-18_Revelation_3-5">
+                <p class="font-semibold text-purple-700">Saturday 18th October</p>
+                <p class="text-gray-800">Revelation 3-5</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Sunday 19th October" data-reading="Revelation 6-8" data-id="2025-10-19_Revelation_6-8">
+                <p class="font-semibold text-purple-700">Sunday 19th October</p>
+                <p class="text-gray-800">Revelation 6-8</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Monday 20th October" data-reading="Revelation 9-11" data-id="2025-10-20_Revelation_9-11">
+                <p class="font-semibold text-purple-700">Monday 20th October</p>
+                <p class="text-gray-800">Revelation 9-11</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Tuesday 21st October" data-reading="Revelation 12-14" data-id="2025-10-21_Revelation_12-14">
+                <p class="font-semibold text-purple-700">Tuesday 21st October</p>
+                <p class="text-gray-800">Revelation 12-14</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Wednesday 22nd October" data-reading="Revelation 15-17" data-id="2025-10-22_Revelation_15-17">
+                <p class="font-semibold text-purple-700">Wednesday 22nd October</p>
+                <p class="text-gray-800">Revelation 15-17</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Thursday 23rd October" data-reading="Revelation 18-20" data-id="2025-10-23_Revelation_18-20">
+                <p class="font-semibold text-purple-700">Thursday 23rd October</p>
+                <p class="text-gray-800">Revelation 18-20</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Friday 24th October" data-reading="Revelation 21-22" data-id="2025-10-24_Revelation_21-22">
+                <p class="font-semibold text-purple-700">Friday 24th October</p>
+                <p class="text-gray-800">Revelation 21-22</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Saturday 25th October" data-reading="Catch-up/Review" data-id="2025-10-25_Catch-up_Review">
+                <p class="font-semibold text-purple-700">Saturday 25th October</p>
+                <p class="text-gray-800">Catch-up/Review</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+            <div class="p-3 bg-purple-50 rounded-lg shadow-sm cursor-pointer hover:bg-purple-100 transition duration-200 daily-reading-item" data-date="Sunday 26th October" data-reading="Catch-up/Review" data-id="2025-10-26_Catch-up_Review">
+                <p class="font-semibold text-purple-700">Sunday 26th October</p>
+                <p class="text-gray-800">Catch-up/Review</p>
+                <button class="status-toggle" data-status="pending">&#x271D;&#xFE0F;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal Structure -->
+    <div id="readingModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-button" id="closeModal">&times;</button>
+            <h2 id="modalDate" class="text-2xl font-bold mb-4"></h2>
+            <p id="modalReading" class="text-xl font-bold"></p>
+        </div>
+    </div>
+
+    <script>
+        // Get all the daily reading elements
+        const dailyReadingItems = document.querySelectorAll('.daily-reading-item');
+        const modal = document.getElementById('readingModal');
+        const modalDate = document.getElementById('modalDate');
+        const modalReading = document.getElementById('modalReading');
+        const closeModalButton = document.getElementById('closeModal');
+
+        // Define the 12 unique colors (adjusted for better contrast where needed)
+        const colors = [
+            '#008080', // Teal
+            '#FF00FF', // Magenta
+            '#40E0D0', // Turquoise
+            '#FF7F50', // Coral
+            '#4B0082', // Indigo
+            '#9932CC', // Lavender (DarkOrchid)
+            '#808000', // Olive
+            '#800000', // Maroon
+            '#00BFFF', // Cyan (DeepSkyBlue)
+            '#FFDAB9', // Peach (PeachPuff) - will have dark text for contrast
+            '#36454F', // Charcoal
+            '#FFBF00'  // Amber
+        ];
+
+        let colorIndex = 0; // To cycle through colors
+
+        // Function to update the status of a reading item
+        function updateReadingStatus(itemDiv, isCompleted) {
+            const toggleButton = itemDiv.querySelector('.status-toggle');
+            const readingId = itemDiv.dataset.id;
+
+            if (isCompleted) {
+                toggleButton.dataset.status = 'completed';
+                toggleButton.innerHTML = '&#10004;'; // Green tick emoji
+                itemDiv.classList.add('completed'); // Add class for visual styling
+                localStorage.setItem(readingId, 'completed');
+            } else {
+                toggleButton.dataset.status = 'pending';
+                toggleButton.innerHTML = '&#x271D;&#xFE0F;'; // Crucifixion Cross emoji
+                itemDiv.classList.remove('completed'); // Remove class
+                localStorage.removeItem(readingId); // Remove from storage if not completed
+            }
+        }
+
+        // Add event listeners to each daily reading item
+        dailyReadingItems.forEach(itemDiv => {
+            // Event listener for opening the modal (clicking on the text/date area)
+            itemDiv.addEventListener('click', (event) => {
+                // Only open modal if the click wasn't on the status toggle button
+                if (!event.target.classList.contains('status-toggle')) {
+                    const date = itemDiv.dataset.date;
+                    const reading = itemDiv.dataset.reading;
+
+                    modalDate.textContent = date;
+                    modalReading.textContent = reading;
+
+                    // Apply unique color to the reading text
+                    modalReading.style.color = colors[colorIndex];
+                    colorIndex = (colorIndex + 1) % colors.length; // Cycle to the next color
+
+                    modal.classList.remove('hidden');
+                }
+            });
+
+            // Event listener for the status toggle button
+            const toggleButton = itemDiv.querySelector('.status-toggle');
+            toggleButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the parent div's click (modal open) event
+
+                let currentStatus = toggleButton.dataset.status;
+                if (currentStatus === 'pending') {
+                    updateReadingStatus(itemDiv, true); // Mark as completed
+                } else {
+                    updateReadingStatus(itemDiv, false); // Mark as pending
+                }
+            });
+        });
+
+        // Close modal when close button is clicked
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside the content (on the overlay)
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // On page load, check localStorage for status and update UI
+        window.addEventListener('load', () => {
+            dailyReadingItems.forEach(itemDiv => {
+                const readingId = itemDiv.dataset.id;
+                const savedStatus = localStorage.getItem(readingId);
+                if (savedStatus === 'completed') {
+                    updateReadingStatus(itemDiv, true);
+                } else {
+                    updateReadingStatus(itemDiv, false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
